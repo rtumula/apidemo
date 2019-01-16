@@ -1,0 +1,151 @@
+.sidebar {
+    background-color: #fff;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: 280px;
+    z-index: 1000;
+}
+
+.logo {
+    border-bottom: 2px solid rgba(0,0,0,.0625);
+    border-right: 2px solid rgba(0,0,0,.0625);
+    padding: 0 20px;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    font-size: 50px;
+}
+
+.sidebar-menu {
+    border-right: 2px solid rgba(0,0,0,.0625);
+    height: calc(100vh - 65px);
+    list-style: none;
+    margin: 0;
+    overflow: auto;
+    padding: 30px;
+    position: relative;
+}
+
+.sidebar-link {
+    cursor: pointer;
+}
+
+.sidebar-link :hover {
+    color: blue;
+}
+
+.page-container {
+    min-height: 100vh;
+    padding-left: 280px;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.activeMenu {
+    font-weight: bold !important;
+    display: block;
+    border: 1px solid #007BC4;
+    background: #007BC4;
+    padding: 4px;
+    width: 200px;
+    border-radius: 4px;
+}
+
+.content {
+    background-color: #fff;
+    display: block;
+    margin-top: 6%;
+    padding: 0;
+    position: fixed;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: calc(100% - 280px);
+    z-index: 800;
+    list-style: none;
+}
+
+.marketOpen {
+    font-size:17px;
+    color: green;
+}
+
+.marketClosed {
+    font-size:17px;
+    color: red;
+}
+
+.header {
+    background-color: #fff;
+    border-bottom: 2px solid rgba(0,0,0,.0625);
+    display: block;
+    height: 72px;
+    margin-bottom: 0;
+    padding: 0;
+    position: fixed;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: calc(100% - 280px);
+    z-index: 800;
+}
+
+.header-left {
+	float: left;
+    display: block;
+    margin: 1.5%;
+    padding: 4px;
+    border-radius: 6px;
+        margin-top: 22px;
+}
+
+.header-left span {
+    font-weight: bold;
+    font-size: 26px !important;
+}
+
+.header-right {
+    float: right;
+    display: block;
+    margin: 1.5%;
+    border: 1px solid #007BC4;
+    padding: 4px;
+    border-radius: 6px;
+    background: #007BC4;
+    cursor: pointer;
+    box-shadow: 3px 4px #888885;
+}
+
+.header-right a {
+    font-weight: bold;
+    color: black;
+    text-decoration-line: none;
+}
+
+.quote-box {
+	display: block;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    width: 250px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.converter-form {
+        width: 300px;
+        margin-left: -10px;
+}
+
+.conversion-box {
+    display: inline-block;
+    border: 1px solid lightgrey;
+    padding: 4px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}

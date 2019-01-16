@@ -1,0 +1,35 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<div class="login-form">
+<form class="text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <p class="h4 mb-4">Sign in</p>
+
+    <!-- Email -->
+    <input type="email" id="defaultLoginFormEmail" formControlName="email" class="form-control mb-4" placeholder="E-mail" [ngClass]="{ 'is-invalid': lSubmit && lForm.email.errors }">
+    <div *ngIf="lSubmit && lForm.email.errors" class="invalid-feedback">
+        <div *ngIf="lForm.email.errors.required">E-mail is required</div>
+        <div *ngIf="lForm.email.errors.email">Email must be a valid email address</div>
+    </div>
+    <!-- Password -->
+    <input type="password" id="defaultLoginFormPassword" formControlName="password" class="form-control mb-4" placeholder="Password" [ngClass]="{ 'is-invalid': lSubmit && lForm.password.errors }">
+    <div *ngIf="lSubmit && lForm.email.errors" class="invalid-feedback">
+        <div *ngIf="lForm.password.errors.required">Password is required</div>
+    </div>
+     <div *ngIf="lSubmit && badCredentials">
+        Username or password is incorrect.
+    </div>
+    <div class="d-flex justify-content-around">
+        <div>
+            <!-- Forgot password -->
+            <a href="">Forgot password?</a>
+        </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+</form>
+</div>

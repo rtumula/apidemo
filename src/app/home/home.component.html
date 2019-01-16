@@ -1,0 +1,85 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<div class="sidebar">
+   <div class="logo"><img style="height: 75px;" src="apidemo/assets/tradeArrow.png">-X</div>
+   <ul class="sidebar-menu scrollable pos-r ps">
+      <li class="nav-item mT-30 active">
+         <a (click)="changeMenu('dashboard')" class="{{currentMenu == 'dashboard' ? 'activeMenu sidebar-link' : 'sidebar-link'}}">
+         <span class="icon-holder">
+         <i class="fas fa-home"></i>
+         </span>
+         <span class="title">Dashboard</span>
+         </a>
+      </li>
+      <li class="nav-item">
+         <a (click)="changeMenu('converter')" class="{{currentMenu == 'converter' ? 'activeMenu sidebar-link' : 'sidebar-link'}}">
+         <span class="icon-holder">
+         <i class="c-brown-500 ti-email"></i> 
+         </span>
+         <span class="title">Converter</span>
+         </a>
+      </li>
+   </ul>
+
+</div>
+<div class="page-container">
+   <div class="header">
+      <div class="header-left">
+         <span>Market status:</span> &nbsp; <b class="{{marketStatus == 'Open' ? 'marketOpen' : 'marketClosed'}}">{{marketStatus}}</b>
+      </div>
+      <div class="header-right">
+         <a href="/apidemo/logout">Logout</a>
+      </div>
+   </div>
+   <div class="content">
+      <div *ngIf="currentMenu=='dashboard'">
+         <h3 style="margin: 20px;">Quotes of the day</h3>
+         <div class="quote-box" *ngFor="let quote of pagedItems"> 
+            <b>Symbol:</b> {{quote.symbol}} <br> 
+            <b>Price:</b> {{quote.price}} <br>  
+            <b>Bid:</b> {{quote.bid}} <br> 
+            <b>Ask:</b> {{quote.ask}} <br>
+            <b>Date:</b> {{quote.timestamp | date}} <br> 
+         </div>
+         <!-- pager -->
+         <ul style="margin: 20px;" *ngIf="pagination.pages && pagination.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pagination.currentPage === 1}">
+               <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:pagination.currentPage === 1}">
+               <a (click)="setPage(pagination.currentPage - 1)">Previous</a>
+            </li>
+            <li [ngClass]="{disabled:pagination.currentPage === pagination.totalPages}">
+               <a (click)="setPage(pagination.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pagination.currentPage === pagination.totalPages}">
+               <a (click)="setPage(pagination.totalPages)">Last</a>
+            </li>
+         </ul>
+      </div>
+      <div *ngIf="currentMenu=='converter'">
+         <h3 style="margin: 20px;">Currency Converter</h3>
+         <div class="converter-form">
+            <form class="text-center border border-light p-5" [formGroup]="currConverterForm" (ngSubmit)="cCSubmit()">
+            <input type="text" id="defaultLoginFormEmail" formControlName="currFrom" class="form-control mb-4" placeholder="From currency" [ngClass]="{ 'is-invalid': cCSubmitted && cCForm.currFrom.errors }">
+            <div *ngIf="cCSubmitted && cCForm.currFrom.errors" class="invalid-feedback">
+               <div *ngIf="cCForm.currFrom.errors.required">From currency is required</div>
+            </div>
+            <input type="text" id="defaultLoginFormEmail" formControlName="currTo" class="form-control mb-4" placeholder="To currency" [ngClass]="{ 'is-invalid': cCSubmitted && cCForm.currTo.errors }">
+            <div *ngIf="cCSubmitted && cCForm.currTo.errors" class="invalid-feedback">
+               <div *ngIf="cCForm.currTo.errors.required">To currency is required</div>
+            </div>
+            <input type="text" id="defaultLoginFormEmail" formControlName="currAmount" class="form-control mb-4" placeholder="Amount to convert" [ngClass]="{ 'is-invalid': cCSubmitted && cCForm.currAmount.errors }">
+            <div *ngIf="cCSubmitted && cCForm.currAmount.errors" class="invalid-feedback">
+               <div *ngIf="cCForm.currAmount.errors.required">Amount to convert is required</div>
+            </div>
+            <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+            </form>
+            <div class="conversion-box" *ngIf="conversion"> 
+               <b>Value:</b> {{conversion.value}} <br> 
+               <b>Price:</b> {{conversion.text}} <br>
+               <b>Date:</b> {{conversion.timestamp | date}} <br>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
